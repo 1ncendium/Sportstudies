@@ -1,6 +1,6 @@
-from pwa import app, db
-from pwa.models import User
-from pwa.forms import RegistrationForm, LoginForm
+from main import app, db
+from main.models import User
+from main.forms import RegistrationForm, LoginForm
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask import render_template, redirect, request, url_for, flash, session
 from flask_login import login_user, login_required, logout_user, current_user
