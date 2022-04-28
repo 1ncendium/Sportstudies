@@ -1,104 +1,10 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Profiel Pagina - IoT sportstudies</title>
-    <meta name="description" content="Voor studenten">
-    <link rel="stylesheet" href="static/assets/bootstrap/css/bootstrap.min.css">
-    <link rel="manifest" href="manifest.json">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i&amp;display=swap">
-    <link rel="stylesheet" href="static/assets/fonts/fontawesome-all.min.css">
-    <link rel="stylesheet" href="static/assets/fonts/font-awesome.min.css">
-    <link rel="stylesheet" href="static/assets/fonts/line-awesome.min.css">
-    <link rel="stylesheet" href="static/assets/fonts/fontawesome5-overrides.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/6.4.8/swiper-bundle.min.css">
-    <link rel="stylesheet" href="static/assets/css/Simple-Slider.css">
-    <link rel="stylesheet" href="static/assets/css/x-dropdown.css">
-</head>
-
-<body id="page-top">
-    <div id="wrapper">
-        <nav class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0" style="background: rgb(225,121,77);--bs-primary: rgb(255,102,37);--bs-primary-rgb: 255,102,37;">
-            <div class="container-fluid d-flex flex-column p-0"><a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#">
-                    <div class="sidebar-brand-icon rotate-n-15"><i class="la la-share-alt"></i></div>
-                    <div class="sidebar-brand-text mx-3"><span>Sportstudies</span></div>
-                </a>
-                <hr class="sidebar-divider my-0">
-                <ul class="navbar-nav text-light" id="accordionSidebar">
-                    <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
-                    <li class="nav-item"><a class="nav-link active" href="profiel"><i class="fas fa-user"></i><span>Profiel</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-table"></i><span>Forum</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="/login"><i class="far fa-user-circle"></i><span>Login</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="/register"><i class="fas fa-user-circle"></i><span>Registreren</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="#"><i class="fas fa-user-lock"></i><span>Privacy</span></a></li>
-                </ul>
-                <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>
-            </div>
-        </nav>
-        <div class="d-flex flex-column" id="content-wrapper">
-            <div id="content">
-                <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top">
-                    <div class="container-fluid"><button class="btn btn-link d-md-none rounded-circle me-3" id="sidebarToggleTop" type="button" style="--bs-primary: rgb(255,102,37);--bs-primary-rgb: 255,102,37;"><i class="fas fa-bars" style="border-color: rgb(255,102,37);color: rgb(255,102,37);"></i></button>
-                        <form class="d-none d-sm-inline-block me-auto ms-md-3 my-2 my-md-0 mw-100 navbar-search">
-                            <div class="input-group"><input class="bg-light form-control border-0 small" type="text" placeholder="Zoeken ..."><button class="btn btn-primary py-0" type="button" style="background: rgb(255,102,37);border-color: rgba(255,255,255,0);"><i class="fas fa-search"></i></button></div>
-                        </form>
-                        <ul class="navbar-nav flex-nowrap ms-auto">
-                            <li class="nav-item dropdown d-sm-none no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"><i class="fas fa-search"></i></a>
-                                <div class="dropdown-menu dropdown-menu-end p-3 animated--grow-in" aria-labelledby="searchDropdown">
-                                    <form class="me-auto navbar-search w-100">
-                                        <div class="input-group"><input class="bg-light form-control border-0 small" type="text" placeholder="Search for ...">
-                                            <div class="input-group-append"><button class="btn btn-primary py-0" type="button" style="background: rgb(255,102,37);border-color: rgba(255,255,255,0);"><i class="fas fa-search"></i></button></div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </li>
-                            <li class="nav-item dropdown no-arrow mx-1">
-                                <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"><span class="badge bg-danger badge-counter">3+</span><i class="fas fa-bell fa-fw"></i></a>
-                                    <div class="dropdown-menu dropdown-menu-end dropdown-list animated--grow-in">
-                                        <h6 class="dropdown-header">Mededelingen</h6><a class="dropdown-item d-flex align-items-center" href="#">
-                                            <div class="me-3">
-                                                <div class="bg-primary icon-circle"><i class="fas fa-file-alt text-white"></i></div>
-                                            </div>
-                                            <div><span class="small text-gray-500">22/04/2022</span>
-                                                <p>Je maandelijkse geluidsmetingen zijn beschikbaar</p>
-                                            </div>
-                                        </a><a class="dropdown-item d-flex align-items-center" href="#">
-                                            <div class="me-3">
-                                                <div class="bg-success icon-circle"><i class="fas fa-donate text-white"></i></div>
-                                            </div>
-                                            <div><span class="small text-gray-500">21/04/2022</span>
-                                                <p>Je hebt je sportdoel vandaag behaald!</p>
-                                            </div>
-                                        </a><a class="dropdown-item d-flex align-items-center" href="#">
-                                            <div class="me-3">
-                                                <div class="bg-warning icon-circle"><i class="fas fa-exclamation-triangle text-white"></i></div>
-                                            </div>
-                                            <div><span class="small text-gray-500">18/04/2022</span>
-                                                <p>Je hebt aangegeven dat je mentale gezondheid minder is, gaat het goed?</p>
-                                            </div>
-                                        </a><a class="dropdown-item text-center small text-gray-500" href="#">Alle mededelingen!</a>
-                                    </div>
-                                </div>
-                            </li>
-                            <div class="d-none d-sm-block topbar-divider"></div>
-                            <li class="nav-item dropdown no-arrow">
-                                <div class="nav-item dropdown no-arrow"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="/profiel"><span class="d-none d-lg-inline me-2 text-gray-600 small">Remco M.</span><img class="border rounded-circle img-profile" src="static/assets/img/1605884121088.jpg"></a>
-                                    <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in"><a class="dropdown-item" href="#"><i class="fas fa-user fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Profile</a><a class="dropdown-item" href="#"><i class="fas fa-cogs fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Settings</a><a class="dropdown-item" href="#"><i class="fas fa-list fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Activity log</a>
-                                        <div class="dropdown-divider"></div><a class="dropdown-item" href="{{url_for('logout')}}"><i class="fas fa-sign-out-alt fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Logout</a>
-
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
+{% include 'base.html' %}
                 <div class="container-fluid">
                     <h3 class="text-dark mb-4">Profiel</h3>
                     <div class="row mb-3">
                         <div class="col-lg-4">
                             <div class="card mb-3">
+                                <form method="post">
                                 <div class="card-body text-center shadow"><img class="rounded-circle mb-3 mt-4" src="static/assets/img/1605884121088.jpg" id="output" width="160" height="160">
                                     <div class="mb-3">
                                         <label class="-label" for="file">
@@ -106,38 +12,35 @@
                                             <strong><span class="btn btn-primary btn-sm" style="background: rgb(255,102,37); border-color: rgb(255,102,37);">Verander profielfoto</span></strong>
                                           </label>
                                           <input id="file" type="file" onchange="loadFile(event)"/>
-                                          
+                                          <div class="mb-3"><button class="btn btn-primary btn-sm" type="submit" style="--bs-primary: rgb(255,102,37);--bs-primary-rgb: 255,102,37;background: rgb(255,102,37);border-color: rgb(255,102,37);">Opslaan</button></div>
                                     </div>
                                 </div>
+                            </form>
                             </div>
                             <div class="card shadow mb-4">
                                 <div class="card-header py-3">
                                     <h6 class="text-primary fw-bold m-0" style="--bs-primary: rgb(255,102,37);--bs-primary-rgb: 255,102,37;">Status</h6>
                                 </div>
                                 <div class="card-body">
-                                    <h4 class="small fw-bold">Lichaamsfuncties<span class="float-end">2/10</span></h4>
+                                    <h4 class="small fw-bold">Ding 1<span class="float-end">2/10</span></h4>
                                     <div class="progress progress-sm mb-3">
                                         <div class="progress-bar bg-danger" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%;"><span class="visually-hidden">20%</span></div>
                                     </div>
-                                    <h4 class="small fw-bold">Mentale welbevinding<span class="float-end">4/10</span></h4>
+                                    <h4 class="small fw-bold">Ding 2<span class="float-end">4/10</span></h4>
                                     <div class="progress progress-sm mb-3">
                                         <div class="progress-bar bg-warning" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%;"><span class="visually-hidden">40%</span></div>
                                     </div>
-                                    <h4 class="small fw-bold">Zingeving<span class="float-end">6/10</span></h4>
+                                    <h4 class="small fw-bold">Ding 3<span class="float-end">6/10</span></h4>
                                     <div class="progress progress-sm mb-3">
                                         <div class="progress-bar bg-primary" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"><span class="visually-hidden">60%</span></div>
                                     </div>
-                                    <h4 class="small fw-bold">Kwaliteit van Leven<span class="float-end">8/10</span></h4>
+                                    <h4 class="small fw-bold">Ding 4<span class="float-end">8/10</span></h4>
                                     <div class="progress progress-sm mb-3">
                                         <div class="progress-bar bg-info" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%;"><span class="visually-hidden">80%</span></div>
                                     </div>
-                                    <h4 class="small fw-bold">Meedoen<span class="float-end">10/10</span></h4>
+                                    <h4 class="small fw-bold">Ding 5<span class="float-end">10/10</span></h4>
                                     <div class="progress progress-sm mb-3">
                                         <div class="progress-bar bg-success" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"><span class="visually-hidden">100%</span></div>
-                                    </div>
-                                    <h4 class="small fw-bold">Dagelijks Functioneren<span class="float-end">5/10</span></h4>
-                                    <div class="progress progress-sm mb-3">
-                                        <div class="progress-bar bg-success" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%;"><span class="visually-hidden">50%</span></div>
                                     </div>
                                 </div>
                             </div>
@@ -180,24 +83,31 @@
                                             <p class="text-primary m-0 fw-bold" style="--bs-primary: rgb(255,102,37);--bs-primary-rgb: 255,102,37;">Info</p>
                                         </div>
                                         <div class="card-body">
-                                            <form>
+                                            <form id="naam-gegevens" method="post" name="naam-gegevens">
                                                 <div class="row">
                                                     <div class="col">
-                                                        <div class="mb-3"><label class="form-label" for="username"><strong>Gebruikersnaam</strong></label><input class="form-control" type="text" id="username" placeholder="Thomas_deJong" name="username"></div>
+                                                        <div class="mb-3"><label class="form-label" for="username"><strong>Gebruikersnaam</strong></label>{{ naamGegevensForm.gebruikersnaam(class="form-control", placeholder=gebruikersnaam) }}</div>
                                                     </div>
                                                     <div class="col">
-                                                        <div class="mb-3"><label class="form-label" for="email"><strong>E-mail</strong></label><input class="form-control" type="email" id="email" placeholder="thomas.dejong@home.nl" name="email"></div>
+                                                        <div class="mb-3"><label class="form-label" for="email"><strong>E-mail</strong></label>{{ naamGegevensForm.email(class="form-control", placeholder=email) }}</div>
                                                     </div>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col">
-                                                        <div class="mb-3"><label class="form-label" for="first_name"><strong>Voornaam</strong></label><input class="form-control" type="text" id="first_name" placeholder="Thomas" name="first_name"></div>
+                                                        <div class="mb-3"><label class="form-label" for="first_name"><strong>Voornaam</strong></label>{{ naamGegevensForm.voornaam(class="form-control", placeholder=voornaam) }}</div>
                                                     </div>
                                                     <div class="col">
-                                                        <div class="mb-3"><label class="form-label" for="last_name"><strong>Achternaam</strong><br></label><input class="form-control" type="text" id="last_name" placeholder="de Jong" name="last_name"></div>
+                                                        <div class="mb-3"><label class="form-label" for="last_name"><strong>Achternaam</strong><br></label>{{ naamGegevensForm.achternaam(class="form-control" , placeholder=achternaam) }}</div>
                                                     </div>
                                                 </div>
-                                                <div class="mb-3"><button class="btn btn-primary btn-sm" type="submit" style="--bs-primary: rgb(255,102,37);--bs-primary-rgb: 255,102,37;background: rgb(255,102,37);border-color: rgb(255,102,37);">Opslaan</button></div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div class="mb-3"><label class="form-label" for="first_name"><strong>Telefoon</strong></label>{{ naamGegevensForm.telefoon(class="form-control", placeholder=telefoon) }}</div>
+                                                    </div>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <button class="btn btn-primary btn-sm" type="submit" style="--bs-primary: rgb(255,102,37);--bs-primary-rgb: 255,102,37;background: rgb(255,102,37);border-color: rgb(255,102,37);">Opslaan</button>
+                                                </div>
                                             </form>
                                         </div>
                                     </div>
@@ -206,14 +116,14 @@
                                             <p class="text-primary m-0 fw-bold" style="--bs-primary: rgb(255,102,37);--bs-primary-rgb: 255,102,37;">Contact</p>
                                         </div>
                                         <div class="card-body">
-                                            <form>
-                                                <div class="mb-3"><label class="form-label" for="address"><strong>Address</strong></label><input class="form-control" type="text" id="address" placeholder="Willem Alexander Straat 6" name="address"></div>
+                                            <form id="adres-gegevens" method="post">
+                                                <div class="mb-3"><label class="form-label" for="address"><strong>Adres</strong></label>{{ adresGegevensForm.adres(class="form-control", placeholder=adres) }}</div>
                                                 <div class="row">
                                                     <div class="col">
-                                                        <div class="mb-3"><label class="form-label" for="city"><strong>City</strong></label><input class="form-control" type="text" id="city" placeholder="Groningen" name="city"></div>
+                                                        <div class="mb-3"><label class="form-label" for="city"><strong>Stad</strong></label>{{ adresGegevensForm.stad(class="form-control", placeholder=stad) }}</div>
                                                     </div>
                                                     <div class="col">
-                                                        <div class="mb-3"><label class="form-label" for="country"><strong>Country</strong></label><input class="form-control" type="text" id="country" placeholder="Nederland" name="country"></div>
+                                                        <div class="mb-3"><label class="form-label" for="country"><strong>Land</strong></label>{{ adresGegevensForm.land(class="form-control", placeholder=land) }}</div>
                                                     </div>
                                                 </div>
                                                 <div class="mb-3"><button class="btn btn-primary btn-sm" type="submit" style="--bs-primary: rgb(255,102,37);--bs-primary-rgb: 255,102,37;background: rgb(255,102,37);border-color: rgb(255,102,37);">Opslaan</button></div>
@@ -224,35 +134,37 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card shadow mb-5">
+                    <div class="card shadow mb-3" style="margin-top: 16px;">
                         <div class="card-header py-3">
-                            <p class="text-primary m-0 fw-bold" style="--bs-primary: rgb(255,102,37);--bs-primary-rgb: 255,102,37;">Persoonlijke instellingen</p>
+                            <p class="text-primary m-0 fw-bold" style="--bs-primary: rgb(255,102,37);--bs-primary-rgb: 255,102,37;">Wachtwoord</p>
                         </div>
                         <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <form>
-                                        <div class="mb-3"></div>
-                                        <div class="mb-3">
-                                            <div class="form-check form-switch"><input class="form-check-input" type="checkbox" id="formCheck-1" style="--bs-primary: rgb(255,102,37);--bs-primary-rgb: 255,102,37;"><label class="form-check-label" for="formCheck-1"><strong>Forum Gebruiker</strong><br></label></div>
-                                            <div class="form-check form-switch"><input class="form-check-input" type="checkbox" id="formCheck-3"><label class="form-check-label" for="formCheck-3"><strong>Pushmeldingen</strong></label></div>
-                                            <div class="form-check form-switch"><input class="form-check-input" type="checkbox" id="formCheck-2"><label class="form-check-label" for="formCheck-2"><strong>Data delen</strong></label></div>
-                                        </div>
-                                        <div class="mb-3"><button class="btn btn-primary btn-sm" type="submit" style="--bs-primary: rgb(255,102,37);--bs-primary-rgb: 255,102,37;background: rgb(255,102,37);border-color: rgb(255,102,37);">Opslaan</button></div>
-                                    </form>
+                            <form method="post">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="mb-3"><label class="form-label"><strong>Nieuw wachtwoord</strong></label>{{nieuwWachtwoordForm.wachtwoord(class="form-control form-control-user")}}</div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="mb-3"><label class="form-label"><strong>Herhaal nieuw wachtwoord</strong><br></label>{{nieuwWachtwoordForm.wachtwoord_herhaal(class="form-control form-control-user")}}</div>
+                                    </div>
                                 </div>
-                            </div>
+                                <div class="mb-3"><button class="btn btn-primary btn-sm" type="submit" style="--bs-primary: rgb(255,102,37);--bs-primary-rgb: 255,102,37;background: rgb(255,102,37);border-color: rgb(255,102,37);">Opslaan</button></div>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
-            <footer class="bg-white sticky-footer" style="background: rgba(255,0,0,0);">
-                <div class="container my-auto">
-                    <div class="text-center my-auto copyright"><span>Copyright © IoT sportstudies 2022</span></div>
-                </div>
-            </footer>
-        </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
+        </div>
     </div>
+</div>
+</div>
+<footer class="bg-white sticky-footer" style="background: rgba(255,0,0,0);">
+<div class="container my-auto">
+    <div class="text-center my-auto copyright"><span>Copyright © IoT sportstudies 2022</span></div>
+</div>
+</footer>
+</div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
+</div>
     <script src="static/assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/6.4.8/swiper-bundle.min.js"></script>
     <script src="static/assets/js/Simple-Slider.js"></script>

@@ -1,0 +1,57 @@
+{% include 'base.html' %}
+                <div class="container-fluid">
+                    <h3 class="text-dark mb-1"></h3>
+                </div>
+                <div class="p-5">
+                    <h1 style="color: rgb(0,0,0);"><strong>Vragenlijst</strong><img src="static/assets/img/klein_logo.png" style="width: 61px;margin-left: 34px;"></h1>
+                    <div class="text-center">
+                        <h4 class="text-dark mb-4" style="text-align: left;">Hier kunt u uw dagelijkse vragenlijst invullen.</h4>
+                    </div>
+                </div>
+                <form data-multi-step class="multi-step-form">
+                    <div class="card" data-step>
+                      <h3 class="step-title">Informatie</h3>
+                      <p class="infoslide">Je zult hierna een aantal vragen te zien krijgen<br>Je zult hier bij elke vraag een antwoord geven tussen de 1 en 10
+                    <br>1-3 = Slecht<br>4-7 = Redelijk<br>8-10 = Goed</p>
+                    <button type="button" class="vragenlijstbutton" data-next>Volgende</button>
+                    </div>
+                    <div class="card" data-step>
+                      <h3 class="step-title">Vraag 1/10</h3>
+                      <div class="slider">
+                          <p class="vragentitel">Hoe voel je je vandaag?</p>
+                        <input type="range" min="1" max="10" value="10" oninput="rangeValue.innerText = this.value">
+                        <p id="rangeValue">10</p>
+                        <p class="vrageninfo">1-3 = Slecht<br>4-7 = Redelijk<br>8-10 = Goed</p>
+                      </div>
+                      <button type="button" class="vragenlijstbutton" data-previous>Vorige</button>
+                      <button type="button" class="vragenlijstbutton" data-next>Volgende</button>
+                    </div>
+                    <div class="card" data-step>
+                      <h3 class="step-title">Vraag 2/10</h3>
+                      <div class="slider">
+                        <p class="vragentitel">Heb je goed geslapen?</p>
+                        <input type="range" min="1" max="10" value="10" oninput="rangeValue2.innerText = this.value">
+                        <p id="rangeValue2">10</p>
+                        <p class="vrageninfo">1-3 = Slecht<br>4-7 = Redelijk<br>8-10 = Goed</p>
+                      </div>
+                      <button type="button" class="vragenlijstbutton" data-previous>Vorige</button>
+                      <button type="button" class="vragenlijstbutton" data-next>Volgende</button>
+                    </div>
+                    <div class="card" data-step>
+                      <h3 class="step-title">This is step 3</h3>
+                      <div class="form-group">
+                        <label for="firstName">First Name</label>
+                        <input type="text" name="firstName" id="firstName">
+                      </div>
+                      <div class="form-group">
+                        <label for="lastName">Last Name</label>
+                        <input type="text" name="lastName" id="lastName">
+                      </div>
+                      <button type="button" data-previous>Previous</button>
+                      <button type="submit">Submit</button>
+                    </div>
+                  </form>
+            </div>
+        </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
+    </div>
+</html>
