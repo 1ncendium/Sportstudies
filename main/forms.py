@@ -7,8 +7,8 @@ from main.models import User
 
 class RegistrationForm(FlaskForm):
     gebruikersnaam = StringField('Gebruikersnaam:', render_kw={"placeholder": "Gebruikersnaam"}, validators=[DataRequired()])
-    email = StringField('Email', render_kw={"placeholder": "Gerbuiker@Domein.com"}, validators=[DataRequired(), Email()])
-    telefoon = IntegerField('Telefoonnummer:', render_kw={"placeholder": "Telefoonnummer"}, validators=[DataRequired()])
+    email = StringField('Email', render_kw={"placeholder": "Gebruiker@Domein.com"}, validators=[DataRequired(), Email()])
+    telefoon = StringField('Telefoonnummer:', render_kw={"placeholder": "Telefoonnummer"}, validators=[DataRequired(), Length(min=10, max=10)])
     geslacht = SelectField('Geslacht:', choices=['Man', 'Vrouw', 'Overig'])
     wachtwoord = PasswordField('Wachtwoord:', render_kw={"placeholder": "Wachtwoord"},
                              validators=[DataRequired(), EqualTo('pass_confirm', message='Passwords Must Match!')])
