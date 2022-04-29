@@ -13,6 +13,8 @@ def logout():
     flash('Je bent nu uitgelogd!')
     return redirect(url_for('login'))
 
+print('hoi')
+
 @app.route('/vragenlijst')
 def vragenlijst():
     return render_template('vragenlijst.html')
