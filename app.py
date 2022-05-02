@@ -4,7 +4,7 @@ from main.forms import RegistrationForm, LoginForm, NaamGegevensForm, AdresGegev
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask import render_template, redirect, request, url_for, flash, session
 from flask_login import login_user, login_required, logout_user, current_user
-from main.checks import check_profiel, check_Unique, check_and_store_wachtwoord
+from main.checks import check_profiel, check_Unique, check_and_store_wachtwoord, check_current_password
 
 @app.route('/logout') # Logt de gebruiker uit
 @login_required
@@ -12,8 +12,6 @@ def logout():
     logout_user()
     flash('Je bent nu uitgelogd!')
     return redirect(url_for('login'))
-
-print('hoi')
 
 @app.route('/vragenlijst')
 def vragenlijst():
@@ -86,7 +84,8 @@ def profiel():
         land = request.form.get('land')
         taal = request.form.get('engels')
         telefoon = request.form.get('telefoon')
-        wachtwoord = request.form.get('wachtwoord')
+        huidig_wachtwoord = request.form.get('huidig_wachtwoord')
+        nieuw_wachtwoord = request.form.get('nieuw_wachtwoord')
 
         titels = ['gebruikersnaam', 'email', 'voornaam', 'achternaam', 'adres', 'stad', 'land', 'taal', 'telefoon']
         waardes = [gebruikersnaam, email, voornaam, achternaam, adres, stad, land, taal, telefoon]
@@ -94,7 +93,14 @@ def profiel():
         # Check of gebruikersnaam en email bestaat 
         gebruikersnaam_bestaat = check_Unique(User, 'gebruikersnaam', gebruikersnaam)
         email_bestaat = check_Unique(User, 'email', email)
-        check_and_store_wachtwoord(user, wachtwoord)
+
+        # Wijzigen van wachtwoord
+        controle = check_current_password(user, huidig_wachtwoord)
+
+        if controle == True:
+            check_and_store_wachtwoord(user, nieuw_wachtwoord)
+        else:
+            return redirect(url_for('profiel')), flash('Huidig wachtwoord komt niet overeen')
 
         if gebruikersnaam_bestaat:
             return redirect(url_for('profiel')), flash('Gebruikersnaam bestaat al')

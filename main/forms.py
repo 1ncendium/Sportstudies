@@ -33,6 +33,6 @@ class AdresGegevensForm(FlaskForm):
     land = StringField('Land:',render_kw={"placeholder": "Land"}, validators=[Length(min=1, max=24)])
 
 class NieuwWachtwoordForm(FlaskForm):
-    wachtwoord = PasswordField('Wachtwoord:', render_kw={"placeholder": "*******"},
-                             validators=[DataRequired(), EqualTo('wachtwoord_herhaal', message='Passwords Must Match!')])
-    wachtwoord_herhaal = PasswordField('Bevestig wachtwoord:', render_kw={"placeholder": "*******"}, validators=[DataRequired()])
+    huidig_wachtwoord = PasswordField('Huidig wachtwoord:', render_kw={"placeholder": "*******"},
+                             validators=[DataRequired()])
+    nieuw_wachtwoord = PasswordField('Nieuw wachtwoord:', render_kw={"placeholder": "*******"}, validators=[DataRequired()])

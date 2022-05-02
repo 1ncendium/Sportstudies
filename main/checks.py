@@ -1,6 +1,6 @@
 from main import db
 from main.models import User
-from werkzeug.security import generate_password_hash
+from werkzeug.security import generate_password_hash, check_password_hash
 
 def check_profiel(model, item, value):
     """
@@ -31,8 +31,19 @@ def check_and_store_wachtwoord(user, plaintextpassword):
     """
     Deze functie zorgt ervoor dat het nieuwe wachtwoord veilig (hashed) wordt opgeslagen in de database. 
     """
+
     if plaintextpassword != None:
         versleutelde_wachtwoord = generate_password_hash(plaintextpassword)
         user.wachtwoord_hash = versleutelde_wachtwoord
         db.session.add(user)
-        db.session.commit()       
+        db.session.commit()
+
+def check_current_password(user, submitted_password):
+    """
+    Bekijkt of het huidige wachtwoord overeenkomt met de input bij het wijzigen van het wachtwoord.
+    """
+    if submitted_password != None:
+        if not check_password_hash(user.wachtwoord_hash, submitted_password):
+            return False
+        else:
+            return True
