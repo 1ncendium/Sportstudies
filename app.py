@@ -96,11 +96,11 @@ def profiel():
 
         # Wijzigen van wachtwoord
         controle = check_current_password(user, huidig_wachtwoord)
+        print(controle)
 
-        if controle == True:
-            check_and_store_wachtwoord(user, nieuw_wachtwoord)
-        else:
-            return redirect(url_for('profiel')), flash('Huidig wachtwoord komt niet overeen')
+        if controle != None:
+            if controle == False:
+                return redirect(url_for('profiel')), flash('Huidig wachtwoord komt niet overeen')
 
         if gebruikersnaam_bestaat:
             return redirect(url_for('profiel')), flash('Gebruikersnaam bestaat al')
@@ -113,6 +113,7 @@ def profiel():
         for i, j in zip(titels, waardes):
             check_profiel(user, i, j)
         
+        check_and_store_wachtwoord(user, nieuw_wachtwoord)
 
     gebruikersnaam = user.gebruikersnaam
     email = user.email
@@ -127,6 +128,10 @@ def profiel():
     return render_template('profiel.html', gebruikersnaam=gebruikersnaam, email=email, voornaam=voornaam, achternaam=achternaam,
                             adres=adres, stad=stad, land=land, telefoon=telefoon, naamGegevensForm=naamGegevensForm, adresGegevensForm=adresGegevensForm, nieuwWachtwoordForm=nieuwWachtwoordForm)
 
+@app.route('/dashboard', methods=['GET', 'POST'])
+@login_required
+def dashboard():
+    return render_template('dashboard.html')
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0')

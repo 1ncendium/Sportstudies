@@ -1,0 +1,7 @@
+{
+    "name": "Sportstudies",
+    "short_name": "Sportstudies",
+    "start_url": "/index.html",
+    "display": "standalone",
+    "orentation": "portrait-primary"
+}

@@ -3024,8 +3024,8 @@ fieldset:disabled .btn {
 
 .btn-primary {
     color: #fff;
-    background-color: #4e73df;
-    border-color: #4e73df
+    background-color: rgb(255, 102, 37);
+    border-color: rgb(255, 102, 37);
 }
 
 .btn-primary:hover {
@@ -11064,8 +11064,12 @@ fieldset:disabled .btn {
 }
 
 html {
-    position: relative;
-    min-height: 100%
+    min-height: calc(100% + env(safe-area-inset-top));
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 body {
@@ -12563,6 +12567,6 @@ body.sidebar-toggled footer.sticky-footer {
     width: 100%
 }
 
-input {
+input.pf {
     display: none;
 }
