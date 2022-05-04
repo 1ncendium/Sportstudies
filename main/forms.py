@@ -4,6 +4,7 @@ from wtforms.validators import DataRequired, Email, EqualTo, Length, Optional
 from wtforms import ValidationError
 from flask_login import current_user
 from main.models import User
+from flask_wtf.file import FileField
 
 class RegistrationForm(FlaskForm):
     gebruikersnaam = StringField('Gebruikersnaam:', render_kw={"placeholder": "Gebruikersnaam"}, validators=[DataRequired()])
@@ -36,3 +37,11 @@ class NieuwWachtwoordForm(FlaskForm):
     huidig_wachtwoord = PasswordField('Huidig wachtwoord:', render_kw={"placeholder": "*******"},
                              validators=[DataRequired()])
     nieuw_wachtwoord = PasswordField('Nieuw wachtwoord:', render_kw={"placeholder": "*******"}, validators=[DataRequired()])
+
+class AccountVerwijderenForm(FlaskForm):
+    confirm_wachtwoord = PasswordField('Wachtwoord:', render_kw={"placeholder": "*******"},
+                             validators=[DataRequired()])
+    submit = SubmitField('Account verwijderen')
+
+class FotoForm(FlaskForm):
+    profiel_foto = FileField("Profielfoto")

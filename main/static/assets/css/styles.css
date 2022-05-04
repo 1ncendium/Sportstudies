@@ -128,3 +128,7 @@
 .step-title {
     font-weight: bold;
 }
+
+input.pf {
+    display: none;
+}

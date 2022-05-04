@@ -4,15 +4,10 @@
     <div class="row mb-3">
         <div class="col-lg-4">
             <div class="card mb-3">
-                <form method="post">
-                    <div class="card-body text-center shadow"><img class="rounded-circle mb-3 mt-4" src="static/assets/img/default_foto.jpg" id="output" width="160" height="160">
+                <form method="post" enctype="multipart/form-data">
+                    <div class="card-body text-center shadow"><img class="rounded-circle mb-3 mt-4" src="static/assets/img/uploads/{{profielfoto}}" id="output" width="160" height="160">
                         <div class="mb-3">
-                            <label class="-label" for="file">
-                                            <span class="glyphicon glyphicon-camera"></span>
-                                            <strong><span class="btn btn-primary btn-sm" style="background: rgb(255,102,37); border-color: rgb(255,102,37);">Verander profielfoto</span></strong>
-                                          </label>
-                            <input class="pf" id="file" type="file" onchange="loadFile(event)" />
-
+                            {{ fotoForm.profiel_foto(class="form-control", placeholder=test) }}
                             <div class="mb-3"><button class="btn btn-primary btn-sm" type="submit" style="--bs-primary: rgb(255,102,37);--bs-primary-rgb: 255,102,37;background: rgb(255,102,37);border-color: rgb(255,102,37); margin-top: 5px;">Opslaan</button></div>
                         </div>
                     </div>
@@ -153,6 +148,25 @@
             </form>
         </div>
     </div>
+    <div class="card shadow mb-3" style="margin-top: 16px;">
+        <div class="card-header py-3">
+            <p class="text-primary m-0 fw-bold" style="--bs-primary: rgb(255,102,37);--bs-primary-rgb: 255,102,37;">Account verwijderen</p>
+        </div>
+        <div class="card-body">
+            <form method="POST">
+                <div class="mb-3">
+                    <div class="row">
+                        <div class="col">
+                            <div class="mb-3"><label class="form-label"><strong>Wachtwoord</strong><br></label>{{accountVerwijderenForm.confirm_wachtwoord(class="form-control form-control-user")}}</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col"><button class="btn btn-primary btn-sm" type="submit" style="--bs-primary: rgb(255,102,37);--bs-primary-rgb: 255,102,37;background: rgb(255,0,0);border-color: rgb(255,0,0);">Account verwijderen</button></div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
 </div>
 </div>
@@ -166,6 +180,8 @@
 </footer>
 </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
 </div>
+</script>
 </body>
+
 
 </html>

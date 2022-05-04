@@ -23,6 +23,7 @@ class User(db.Model, UserMixin):
     stad = db.Column(db.String, default=None)
     land = db.Column(db.String, default=None)
     taal = db.Column(db.String, default='Nederlands')
+    profiel_foto = db.Column(db.String, default='anonymous.jpg')
 
     def __init__(self, gebruikersnaam, email, geslacht, telefoon, password, voornaam, achternaam, adres, stad, land, taal):
         self.gebruikersnaam = gebruikersnaam

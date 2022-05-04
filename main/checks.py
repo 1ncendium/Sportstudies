@@ -47,3 +47,11 @@ def check_current_password(user, submitted_password):
             return False
         else:
             return True
+
+def delete_user(user):
+    """
+    Deze functie verwijderd een gebruiker uit de database
+    """
+    User.query.filter_by(id=user.id).delete()
+    db.session.commit()
+    return

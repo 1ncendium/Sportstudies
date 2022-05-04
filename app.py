@@ -1,10 +1,13 @@
 from main import app, db
 from main.models import User
-from main.forms import RegistrationForm, LoginForm, NaamGegevensForm, AdresGegevensForm, NieuwWachtwoordForm
+from main.forms import RegistrationForm, LoginForm, NaamGegevensForm, AdresGegevensForm, NieuwWachtwoordForm, AccountVerwijderenForm, FotoForm
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask import render_template, redirect, request, url_for, flash, session
 from flask_login import login_user, login_required, logout_user, current_user
-from main.checks import check_profiel, check_Unique, check_and_store_wachtwoord, check_current_password
+from main.checks import check_profiel, check_Unique, check_and_store_wachtwoord, check_current_password, delete_user
+from werkzeug.utils import secure_filename
+import uuid as uuid
+import os
 
 @app.route('/logout') # Logt de gebruiker uit
 @login_required
@@ -71,6 +74,8 @@ def profiel():
     naamGegevensForm = NaamGegevensForm()
     adresGegevensForm = AdresGegevensForm()
     nieuwWachtwoordForm = NieuwWachtwoordForm()
+    accountVerwijderenForm = AccountVerwijderenForm()
+    fotoForm = FotoForm()
     # Check of de request methode "POST" is
     if request.method == "POST":
         
@@ -86,6 +91,13 @@ def profiel():
         telefoon = request.form.get('telefoon')
         huidig_wachtwoord = request.form.get('huidig_wachtwoord')
         nieuw_wachtwoord = request.form.get('nieuw_wachtwoord')
+        confirm_wachtwoord = request.form.get('confirm_wachtwoord')
+        profiel_foto = request.files['profiel_foto']
+        # Pak foto bestandsnaam
+        profielfoto_filename = secure_filename(profiel_foto.filename)
+        # Set UUID
+        profiel_foto_naam = str(uuid.uuid1()) + "_" + profielfoto_filename
+
 
         titels = ['gebruikersnaam', 'email', 'voornaam', 'achternaam', 'adres', 'stad', 'land', 'taal', 'telefoon']
         waardes = [gebruikersnaam, email, voornaam, achternaam, adres, stad, land, taal, telefoon]
@@ -94,13 +106,14 @@ def profiel():
         gebruikersnaam_bestaat = check_Unique(User, 'gebruikersnaam', gebruikersnaam)
         email_bestaat = check_Unique(User, 'email', email)
 
-        # Wijzigen van wachtwoord
-        controle = check_current_password(user, huidig_wachtwoord)
-        print(controle)
-
-        if controle != None:
+        # Gebruiker wil wachtwoord wijzigen
+        if huidig_wachtwoord != None:
+            controle = check_current_password(user, huidig_wachtwoord)
+            # Controleren of controlefunctie True heeft teruggestuurd (huidige wachtwoord komt overeen)
             if controle == False:
                 return redirect(url_for('profiel')), flash('Huidig wachtwoord komt niet overeen')
+            else:
+                check_and_store_wachtwoord(user, nieuw_wachtwoord)
 
         if gebruikersnaam_bestaat:
             return redirect(url_for('profiel')), flash('Gebruikersnaam bestaat al')
@@ -108,12 +121,30 @@ def profiel():
         if email_bestaat:
             return redirect(url_for('profiel')), flash('Email bestaat al')
 
+        # Gebruiker wil account verwijderen
+        if confirm_wachtwoord != None:
+            controleer_wachtwoord = check_current_password(user, confirm_wachtwoord)
+            if controleer_wachtwoord == False:
+                return redirect(url_for('profiel')), flash('Huidig wachtwoord komt niet overeen')
+            else:
+                delete_user(user)
+                return redirect(url_for('account_verwijderd'))
+
+        # Profielfoto veranderen
+        split_foto = profiel_foto_naam.split("_")
+        naam = split_foto[1]
+        if naam != "":
+            uploads_dir = os.path.join(app.config['UPLOAD_FOLDER'], 'uploads')
+            os.makedirs(uploads_dir, exist_ok=True)
+            profiel_foto.save(os.path.join(uploads_dir, profiel_foto_naam))
+            user.profiel_foto = profiel_foto_naam
+            db.session.add(user)
+            db.session.commit()
 
         # Check waardes en data
         for i, j in zip(titels, waardes):
             check_profiel(user, i, j)
-        
-        check_and_store_wachtwoord(user, nieuw_wachtwoord)
+    
 
     gebruikersnaam = user.gebruikersnaam
     email = user.email
@@ -124,14 +155,35 @@ def profiel():
     stad = user.stad
     land = user.land
     telefoon = user.telefoon
+    profielfoto = user.profiel_foto
 
     return render_template('profiel.html', gebruikersnaam=gebruikersnaam, email=email, voornaam=voornaam, achternaam=achternaam,
-                            adres=adres, stad=stad, land=land, telefoon=telefoon, naamGegevensForm=naamGegevensForm, adresGegevensForm=adresGegevensForm, nieuwWachtwoordForm=nieuwWachtwoordForm)
+                            adres=adres, stad=stad, land=land, telefoon=telefoon, accountVerwijderenForm=accountVerwijderenForm, 
+                            naamGegevensForm=naamGegevensForm, adresGegevensForm=adresGegevensForm, nieuwWachtwoordForm=nieuwWachtwoordForm,
+                            fotoForm=fotoForm, profielfoto=profielfoto)
 
 @app.route('/dashboard', methods=['GET', 'POST'])
 @login_required
 def dashboard():
-    return render_template('dashboard.html')
+    profielfoto = User.query.filter_by(id=current_user.get_id()).first().profiel_foto
+    return render_template('dashboard.html', profielfoto=profielfoto)
+
+@app.route('/privacy', methods=['GET', 'POST'])
+def privacy():
+    try:
+        profielfoto = User.query.filter_by(id=current_user.get_id()).first().profiel_foto
+    except:
+        profielfoto = 1
+
+    return render_template('privacy.html', profielfoto=profielfoto)
+
+@app.route('/account_verwijderd')
+def account_verwijderd():
+    user = current_user.get_id()
+    if user != None:
+        return redirect(url_for('profiel'))
+    else:
+        return render_template('account_verwijderd.html')
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')
