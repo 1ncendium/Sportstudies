@@ -7,8 +7,8 @@
                 <form method="post" enctype="multipart/form-data">
                     <div class="card-body text-center shadow"><img class="rounded-circle mb-3 mt-4" src="static/assets/img/uploads/{{profielfoto}}" id="output" width="160" height="160">
                         <div class="mb-3">
-                            {{ fotoForm.profiel_foto(class="form-control", placeholder=test) }}
-                            <div class="mb-3"><button class="btn btn-primary btn-sm" type="submit" style="--bs-primary: rgb(255,102,37);--bs-primary-rgb: 255,102,37;background: rgb(255,102,37);border-color: rgb(255,102,37); margin-top: 5px;">Opslaan</button></div>
+                            {{ fotoForm.profiel_foto(class="form-control") }}
+                            <div class="mb-3"><button class="btn btn-primary btn-sm" type="submit" id="profielfoto" style="--bs-primary: rgb(255,102,37);--bs-primary-rgb: 255,102,37;background: rgb(255,102,37);border-color: rgb(255,102,37); margin-top: 5px;">Opslaan</button></div>
                         </div>
                     </div>
                 </form>

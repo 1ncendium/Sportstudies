@@ -4,10 +4,7 @@ from main.forms import RegistrationForm, LoginForm, NaamGegevensForm, AdresGegev
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask import render_template, redirect, request, url_for, flash, session
 from flask_login import login_user, login_required, logout_user, current_user
-from main.checks import check_profiel, check_Unique, check_and_store_wachtwoord, check_current_password, delete_user
-from werkzeug.utils import secure_filename
-import uuid as uuid
-import os
+from main.checks import check_profiel, check_Unique, check_and_store_wachtwoord, check_current_password, delete_user, change_Profilepic
 
 @app.route('/logout') # Logt de gebruiker uit
 @login_required
@@ -92,12 +89,6 @@ def profiel():
         huidig_wachtwoord = request.form.get('huidig_wachtwoord')
         nieuw_wachtwoord = request.form.get('nieuw_wachtwoord')
         confirm_wachtwoord = request.form.get('confirm_wachtwoord')
-        profiel_foto = request.files['profiel_foto']
-        # Pak foto bestandsnaam
-        profielfoto_filename = secure_filename(profiel_foto.filename)
-        # Set UUID
-        profiel_foto_naam = str(uuid.uuid1()) + "_" + profielfoto_filename
-
 
         titels = ['gebruikersnaam', 'email', 'voornaam', 'achternaam', 'adres', 'stad', 'land', 'taal', 'telefoon']
         waardes = [gebruikersnaam, email, voornaam, achternaam, adres, stad, land, taal, telefoon]
@@ -129,22 +120,15 @@ def profiel():
             else:
                 delete_user(user)
                 return redirect(url_for('account_verwijderd'))
-
-        # Profielfoto veranderen
-        split_foto = profiel_foto_naam.split("_")
-        naam = split_foto[1]
-        if naam != "":
-            uploads_dir = os.path.join(app.config['UPLOAD_FOLDER'], 'uploads')
-            os.makedirs(uploads_dir, exist_ok=True)
-            profiel_foto.save(os.path.join(uploads_dir, profiel_foto_naam))
-            user.profiel_foto = profiel_foto_naam
-            db.session.add(user)
-            db.session.commit()
+                
+        try:
+            change_Profilepic(user, request.files['profiel_foto'])
+        except:
+            pass
 
         # Check waardes en data
         for i, j in zip(titels, waardes):
             check_profiel(user, i, j)
-    
 
     gebruikersnaam = user.gebruikersnaam
     email = user.email

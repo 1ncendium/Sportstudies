@@ -1,6 +1,10 @@
 from main import db
 from main.models import User
 from werkzeug.security import generate_password_hash, check_password_hash
+from werkzeug.utils import secure_filename
+import uuid as uuid
+import os
+from main import app
 
 def check_profiel(model, item, value):
     """
@@ -55,3 +59,22 @@ def delete_user(user):
     User.query.filter_by(id=user.id).delete()
     db.session.commit()
     return
+
+def change_Profilepic(user, file):
+    """
+    Update de profielfoto van een user.
+    """
+    # Pak foto bestandsnaam
+    profielfoto_filename = secure_filename(file.filename)
+    # Set UUID
+    profiel_foto_naam = str(uuid.uuid1()) + "_" + profielfoto_filename
+
+    split_foto = profiel_foto_naam.split("_")
+    naam = split_foto[1]
+    if naam != "":
+        uploads_dir = os.path.join(app.config['UPLOAD_FOLDER'], 'uploads')
+        os.makedirs(uploads_dir, exist_ok=True)
+        file.save(os.path.join(uploads_dir, profiel_foto_naam))
+        user.profiel_foto = profiel_foto_naam
+        db.session.add(user)
+        db.session.commit()
